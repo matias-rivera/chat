@@ -1,16 +1,17 @@
 const express = require('express')
 
 const config = require('./config/app')
+
+const router = require('./router')
+
+const bodyParser = require('body-parser')
+
 const app = express()
 
+app.use(bodyParser.urlencoded({ extended:true }))
+app.use(bodyParser.json())
 
-app.get('/home', (req, res) => {
-    return res.send('Home')
-})
-
-app.get('/login', (req, res) => {
-    return send('Login screen works now')
-})
+app.use(router)
 
 const port = config.appPort
 app.listen(port, () => {
