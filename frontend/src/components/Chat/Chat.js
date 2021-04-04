@@ -1,8 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 
 const Chat = () => {
+    
+    const user = useSelector(state => state.authReducer.user)
+    
     return ( 
-        <>Chat</>
+        <>
+            <h1>Chat Screen</h1>
+            <p>Welcome, {user.firstName}</p>
+        </>
      );
 }
  

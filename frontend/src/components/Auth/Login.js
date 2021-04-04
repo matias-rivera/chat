@@ -3,18 +3,23 @@ import loginImage from '../../assets/images/login.svg'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import AuthServices from '../..//services/authServices'
+import { useDispatch } from 'react-redux'
+import { login } from '../../store/actions/auth';
+
 
 import './Auth.scss'
 
-const Login = () => {
+const Login = ({history}) => {
+
+    const dispatch = useDispatch()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const submitForm = (e) => {
         e.preventDefault()
-
-        AuthServices.login({email, password}).then(res => console.log(res))
+        dispatch(login({email, password},history))
+        //AuthServices.login({email, password}).then(res => console.log(res))
     }
 
     return ( 

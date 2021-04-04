@@ -3,6 +3,8 @@ import Login from './components/Auth/Login'
 import Register from './components/Auth/Register'
 import Chat from './components/Chat/Chat'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import ProtectedRoute from './components/Router/ProtectedRoute'
+
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
         <Switch>
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
-          <Route path='/' exact component={Chat} />
+          <ProtectedRoute path='/' exact component={Chat} />
           <Route render={() => <h1>Page not found</h1>} />
         </Switch>
       </Router>
