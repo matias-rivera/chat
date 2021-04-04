@@ -20,6 +20,8 @@ exports.login = async (req, res) => {
         if(!bcrypt.compareSync(password, user.password)) return res.status(404).json({message: 'Password or User dont match'});
         //generate token
         const userWithToken = generateToken(user.get({raw: true}))
+        userWithToken.user.avatar = user.avatar
+        
         return res.send(userWithToken)
         
     } catch(e) {
@@ -49,5 +51,5 @@ const generateToken = (user) => {
 
     const token = jwt.sign(user, config.appKey,{expiresIn: 86400})
 
-    return {...user, ...{token}}
+    return {...{user}, ...{token}}
 }
